@@ -14,8 +14,22 @@
         <span id="score">0</span>
     </div>
     <div class="score-meny">
-        <img src="./img/weaspon.png" alt="" class="weapon">
-        <span id="moneny">0<span>$</span><span id="buy">buy Q</span></span>
+        <div class="weapon-img-block">
+            <img src="./img/weaspon.png" alt="" class="weapon active" id="weapon1" data-cost="0" data-bought="true">
+            <img src="./img/uzu_.png" alt="" class="weapon" id="weapon2" data-cost="25" data-bought="false">
+        </div>
+        <div class="health-block">
+            <div class="health"></div>
+        </div>
+        <div class="menu-weaspon-container">
+            <div class="menu-weaspon-money-block">
+                <div id="moneny">0<span>$</span></div>
+            </div>
+            <div class="menu-weaspon-block-action">
+                <span id="buy" class="menu-weaspon-text" style="display: none;">buy Q</span>
+                <span id="swap" class="menu-weaspon-text">swap E</span>
+            </div>
+        </div>
     </div>
     <div class="bg-wrap">
         <div class="left-bg"></div>
@@ -23,5 +37,6 @@
         <div class="right-bg"></div>
     </div>
     <canvas></canvas>
+    <audio id="shootSound1" src="./audio/357_fire2.wav"></audio>
 </body>
 </html>

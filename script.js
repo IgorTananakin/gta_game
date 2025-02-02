@@ -26,11 +26,26 @@ let countmoney = 0;
 
 startGame();
 
+// Добавим функцию для обновления видимости кнопки покупки
+function updateBuyButtonVisibility() {
+    const weapon2 = document.getElementById("weapon2");
+    const isBought = weapon2.getAttribute("data-bought") === "true";
+    const buyWeaspon = document.getElementById("buy");
+
+    if (isBought) {
+        buyWeaspon.style.display = "none"; // Скрываем кнопку покупки
+    } else {
+        buyWeaspon.style.display = "inline"; // Показываем кнопку покупки
+    }
+}
+
 function startGame() {
     init();
     animate();
     spawnEnemies();//боты
+    updateBuyButtonVisibility(); // Обновляем видимость кнопки покупки
 }
+
 
 function init () {
     const movementLiminits = {
@@ -45,6 +60,12 @@ function init () {
 }
 
 function createProjectile (event) {
+    // Воспроизведение звука выстрела
+    const shootSound = document.getElementById('shootSound1');
+    console.log(shootSound)
+    shootSound.currentTime = 0; // Перемотка звука на начало (если он уже играл)
+    shootSound.play();
+
     projectiles.push(
         new Projectile(
             player.x,//кординаты выстрела
@@ -129,14 +150,13 @@ function increaseScore(){
     scoreElement.innerHTML = score
 }
 
-function increaseMoney(){   
+function increaseMoney() {
     countmoney += 25;
-    moneyElement.innerHTML = `${countmoney} $`; 
-    //let checkBuy = checkBuyWeaspon(countmoney);
-    //if (countmoney > 100) {
-        console.log(span)
-        buyWeaspon.style.color = "red"
-    //}
+    player.increaseMoney(25); // Увеличиваем баланс игрока
+    moneyElement.innerHTML = `${countmoney}$`;
+    if (countmoney >= 100) {
+        buyWeaspon.style.color = "red"; // Подсветка кнопки покупки
+    }
 }
 
 function checkBuyWeaspon(countmoney) {
